@@ -1,0 +1,19 @@
+name: Super-Linter
+#Event
+on: push 
+#Jobs
+jobs:
+  super-linter:
+#Runners
+  runs-on: windows-latest
+#Steps
+  steps:
+    - name: Checkout Code
+#Actions
+     uses: actions/checkout@v2
+    - name: Run Super-Linter
+#Actions
+     uses: github/super-linter@v3
+     env:
+      DEFAULT_BRANCH: main
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
