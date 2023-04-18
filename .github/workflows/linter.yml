@@ -1,15 +1,17 @@
 name: Lint Code Base
-
+#EVENT
 on: [push, pull_request]
-
+#JOB
 jobs:
   build:
     name: Lint Code Base
+#RUNNER
     runs-on: ubuntu-latest
-
+#STEP
     steps:
 
       - name: Checkout Code
+#ACTION
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -18,7 +20,6 @@ jobs:
         uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: true
-          VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_PYTHON_BLACK: true
-          VALIDATE_HTML: true
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
