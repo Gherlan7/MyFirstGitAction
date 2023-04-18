@@ -1,18 +1,24 @@
-name: Super-Linter
-#Event
-on: push
-#Jobs
+name: Lint Code Base
+
+on: [push, pull_request]
+
 jobs:
-  super-lint:
-    name: Lint code base
-#Runner
+  build:
+    name: Lint Code Base
     runs-on: ubuntu-latest
-#Steps    
+
     steps:
-     - name: Lint Action
-#Actions
-       uses: wearerequired/lint-action@v2.3.0
-       env: 
-        DEFAULT_BRANCH: main
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_HTML: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
