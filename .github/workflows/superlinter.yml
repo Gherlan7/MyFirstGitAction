@@ -5,7 +5,7 @@ on: push
 jobs:
   super-linter:
 #Runners
-  runs-on: windows-latest
+  runs-on: ubuntu-latest
 #Steps
   steps:
     - name: Checkout Code
